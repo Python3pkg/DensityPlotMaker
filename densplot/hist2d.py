@@ -1,5 +1,3 @@
-#!/home/jp43/local/bin/python
-
 import sys
 import numpy as np
 import warnings

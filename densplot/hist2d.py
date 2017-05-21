@@ -17,8 +17,8 @@ def smooth2a(arrayin, nr, nc):
     row = arrayin.shape[0]
     col = arrayin.shape[1]
 
-    el = spdiags(np.ones((2*nr+1, row)),range(-nr,nr+1), row, row).todense()
-    er = spdiags(np.ones((2*nc+1, col)), range(-nc,nc+1), col, col).todense()
+    el = spdiags(np.ones((2*nr+1, row)),list(range(-nr,nr+1)), row, row).todense()
+    er = spdiags(np.ones((2*nc+1, col)), list(range(-nc,nc+1)), col, col).todense()
 
     # Setting all "nan" elements of "arrayin" to zero so that these will not
     # affect the summation.  (If this isn't done, any sum that includes a nan
@@ -85,11 +85,11 @@ def make(x, y, nbinsx, nbinsy, weight=None, free_energy_plot=False, plot_style=N
     ymax = ymax + nextrabinsy*dbinsy
     nbinsy = nbinsy + 2*nextrabinsy
 
-    idxs_grid = [[[] for jdx in xrange(nbinsy)] for idx in xrange(nbinsx)]
+    idxs_grid = [[[] for jdx in range(nbinsy)] for idx in range(nbinsx)]
     idxx = np.floor((x-xmin)/dbinsx).astype(int)
     idxy = np.floor((y-ymin)/dbinsy).astype(int)
 
-    for num, [i, j] in enumerate(zip(idxx, idxy)):
+    for num, [i, j] in enumerate(list(zip(idxx, idxy))):
         idxs_grid[i][j].append(num)
 
     grid = np.zeros((nbinsx, nbinsy))
